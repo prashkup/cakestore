@@ -1,9 +1,7 @@
 import React from 'react'
 import './App.css'
 
-import Navbar from './components/navbar'
-import Description from './components/description'
-import Footer from './components/footer'
+import { Navbar, Description, Footer } from './ui-elements'
 
 function App() {
   return (
