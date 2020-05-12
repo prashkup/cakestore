@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 
-import { Navbar, Description, Footer, ProductList } from './ui-elements'
+import { Navbar, Description, Footer, ProductList, ProductCreator } from './ui-elements'
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <main style={{paddingTop: '80px'}}></main>
       <Description />
       <ProductList />
+      <ProductCreator />
       <Footer />
     </div>
   )
