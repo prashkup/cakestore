@@ -15,6 +15,6 @@ const baseColors = {
   'pineapple': '#ffce2f',
   'butterscotch': '#d8a662'
 }
-const sprinklesColors = ['white', 'black', 'red', 'blue']
+const sprinklesColors = ['lime', 'orange', 'magenta', 'white']
 
 export { colors, prices, baseColors, sprinklesColors }
