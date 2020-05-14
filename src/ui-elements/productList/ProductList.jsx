@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Product from '../product/Product'
+
+import firebase from '../../firebase'
+
 import './ProductList.css'
 
-const ProductList = props => {
-  const Products = [1,2,3,4,5,6,7,8,9,10,11,12].map((val) => {
-    return <Product />
+const ProductList = () => {
+  const [ products, setProducts ]= useState([])
+
+  useEffect(() => {
+    if (products.length === 0)
+    firebase.getProducts()
+    .then((val) => setProducts(val))
+    .catch(err => console.log(err))
+    return () => {}
+  }, [products])
+
+  const Products = products.map((val) => {
+    return <Product name={val.name} id={val.id} desc={val.description} />
   })
 
   return (
