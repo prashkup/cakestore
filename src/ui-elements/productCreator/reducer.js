@@ -50,15 +50,9 @@ const reducer = (state, action) => {
 
   switch (action.type) {
     case SET_TIER_FLAVOR:
-      return {
-        ...data,
-        tierFlavor: action.payload
-      }
+      return { ...data, tierFlavor: action.payload }
     case SET_FROSTING_FLAVOR:
-      return {
-        ...data,
-        frostingFlavor: action.payload
-      }
+      return { ...data, frostingFlavor: action.payload }
     case ADD_LAYER:
       const newLayerType = action.payload.type
       return addLayer(data, newLayerType)
