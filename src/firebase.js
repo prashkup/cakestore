@@ -19,16 +19,18 @@ class Firebase {
     this.storage = app.storage()
   }
 
-  getProducts () {
-    return new Promise((resolve, reject) => {
-      let values = []
-      this.db.ref('products').on("child_added", snapshot => {
-        values.push(snapshot.val())
-        resolve(values)
-      }, err => {
-        reject(err)
-      })
-    })
+  async getProducts () {
+    const productsSnapshot = await this.db.ref('products').once('value')
+    const products = productsSnapshot.val()
+    let results = []
+
+    for await (const product of products) {
+      const url = await this.storage.ref().child(product.image).getDownloadURL()
+      const result = { ...product, image: url }
+      results.push(result)
+    }
+    
+    return results
   }
 }
 
