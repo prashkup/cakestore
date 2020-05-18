@@ -92,10 +92,10 @@ const cakePainter = (element, data) => {
   }
   
   function animate() {
-    cake.updateRenderGraph();
-    requestAnimationFrame( animate );
+    cake.updateRenderGraph()
+    requestAnimationFrame( animate )
   }    
-  animate();
+  animate()
 }
 
 export default cakePainter
