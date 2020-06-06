@@ -1,10 +1,16 @@
-import React, { useRef, useEffect , useReducer } from 'react'
+import React, { useRef, useEffect, useReducer } from 'react'
 import './ProductCreator.css'
 import cakePainter from '../../cakePainter'
 import reducer from './reducer'
 import initialState from './initialState'
-import { addLayer, removeLastLayer, reset, setFrostingFlavor, setTierFlavor, setToppings } 
-from './actions' 
+import ProductAdder from '../productAdder/ProductAdder'
+import  { addLayer, 
+          removeLastLayer, 
+          reset, 
+          setFrostingFlavor, 
+          setTierFlavor, 
+          setToppings
+        } from './actions' 
 
 const ProductCreator = () => {
   const svgRef = useRef(null)
@@ -59,7 +65,7 @@ const ProductCreator = () => {
         <button onClick={() => { removeLastLayerHandler() }}>Remove last layer</button>
         <button onClick={() => { addLayerHandler('frosting') }}>Add frosting</button>
         <button onClick={() => { resetHandler() }}>Reset</button>
-        <button onClick={() => { alert(data.price) }}>Add to cart</button>
+        <ProductAdder />
       </div>
     </div>
   )
