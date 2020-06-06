@@ -1,17 +1,30 @@
 import React from 'react'
 import './App.css'
+import { Provider } from "react-redux"
+import { Router } from "@reach/router"
+import { createBrowserHistory } from 'history'
 
-import { Navbar, Description, Footer, ProductList, ProductCreator } from './ui-elements'
+import { Navbar, Footer } from './ui-elements'
+import HomeView from './views/HomeView'
+import CartView from './views/CartView'
+import AboutView from './views/AboutView'
 
-function App() {
+const history = createBrowserHistory()
+
+function App({ store }) {
   return (
     <div className="app">
+      <Provider store={store}>
       <Navbar title='Cakestore' />
-      <main style={{paddingTop: '80px'}}></main>
-      <Description />
-      <ProductList />
-      <ProductCreator />
+      <main style={{paddingTop: '80px'}}>
+          <Router history={history}>
+            <HomeView path='/' />
+            <CartView path='/cart' />
+            <AboutView path='/about' />
+          </Router>
+      </main>
       <Footer />
+      </Provider>
     </div>
   )
 }
