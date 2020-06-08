@@ -9,7 +9,7 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MSG_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID
+  appId: process.env.REACT_APP_APP_ID,
 }
 
 class Firebase {
@@ -19,7 +19,7 @@ class Firebase {
     this.storage = app.storage()
   }
 
-  async getProducts () {
+  async getProducts() {
     const productsSnapshot = await this.db.ref('products').once('value')
     const products = productsSnapshot.val()
     let results = []
@@ -29,7 +29,7 @@ class Firebase {
       const result = { ...product, image: url }
       results.push(result)
     }
-    
+
     return results
   }
 }

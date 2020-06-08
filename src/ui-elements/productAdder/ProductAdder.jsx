@@ -8,10 +8,8 @@ const ProductAdder = () => {
   const dispatch = useDispatch()
 
   return (
-    <div className='add-to-cart-wrapper'>
-      <button onClick={() => dispatch(addToCart(1))}>
-        Add to Cart
-      </button>
+    <div className="add-to-cart-wrapper">
+      <button onClick={() => dispatch(addToCart(1))}>Add to Cart</button>
     </div>
   )
 }

@@ -1,6 +1,4 @@
-import { 
-  createStore
-} from 'redux'
+import { createStore } from 'redux'
 import reducer from './ui-elements/productAdder/reducer'
 
 const saveToLocalStorage = (state) => {

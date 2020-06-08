@@ -4,9 +4,9 @@ import './Description.css'
 
 const Description = () => {
   return (
-    <div className='description'>
+    <div className="description">
       <p>Select a cake from our recipes or make your own!</p>
-      <a className='theme-button' href='#product-creator'>
+      <a className="theme-button" href="#product-creator">
         Create recipe
       </a>
     </div>

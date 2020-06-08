@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
-import { Provider } from "react-redux"
-import { Router } from "@reach/router"
+import { Provider } from 'react-redux'
+import { Router } from '@reach/router'
 import { createBrowserHistory } from 'history'
 
 import { Navbar, Footer } from './ui-elements'
@@ -15,15 +15,15 @@ function App({ store }) {
   return (
     <div className="app">
       <Provider store={store}>
-      <Navbar title='Cakestore' />
-      <main style={{paddingTop: '80px'}}>
+        <Navbar title="Cakestore" />
+        <main style={{ paddingTop: '80px' }}>
           <Router history={history}>
-            <HomeView path='/' />
-            <CartView path='/cart' />
-            <AboutView path='/about' />
+            <HomeView path="/" />
+            <CartView path="/cart" />
+            <AboutView path="/about" />
           </Router>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
       </Provider>
     </div>
   )

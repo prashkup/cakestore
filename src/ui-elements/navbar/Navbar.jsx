@@ -5,23 +5,25 @@ import { Link } from '@reach/router'
 import './Navbar.css'
 import ShoppingCart from '../shoppingCart/ShoppingCart'
 
-const Navbar = ({title}) => {
+const Navbar = ({ title }) => {
   return (
-    <nav className='site-nav'>
-      <div className='logo'>
-      <h1><Link to='/'>{title}</Link></h1>
+    <nav className="site-nav">
+      <div className="logo">
+        <h1>
+          <Link to="/">{title}</Link>
+        </h1>
       </div>
-      <ul className='nav-links'>
-        <li className='nav-link'>
-          <Link to='/cart'>
+      <ul className="nav-links">
+        <li className="nav-link">
+          <Link to="/cart">
             <ShoppingCart />
           </Link>
         </li>
-        <li className='nav-link'>
-          <Link to='/account'>Account</Link>
+        <li className="nav-link">
+          <Link to="/account">Account</Link>
         </li>
-        <li className='nav-link'>
-          <Link to='/about'>About</Link>
+        <li className="nav-link">
+          <Link to="/about">About</Link>
         </li>
       </ul>
     </nav>
@@ -29,7 +31,7 @@ const Navbar = ({title}) => {
 }
 
 Navbar.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 }
 
 export default Navbar

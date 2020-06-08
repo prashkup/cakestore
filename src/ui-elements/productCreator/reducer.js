@@ -1,13 +1,20 @@
 import initialState from './initialState'
-import { ADD_LAYER, REMOVE_LAST_LAYER, RESET, SET_TOPPINGS, SET_TIER_FLAVOR, SET_FROSTING_FLAVOR } 
-from './actions'
+import {
+  ADD_LAYER,
+  REMOVE_LAST_LAYER,
+  RESET,
+  SET_TOPPINGS,
+  SET_TIER_FLAVOR,
+  SET_FROSTING_FLAVOR,
+} from './actions'
 import { prices } from '../../data'
 
 const calculatePrice = (layers) => {
-  const numberOfTiers = layers.filter(layer => layer.type === 'tier').length
+  const numberOfTiers = layers.filter((layer) => layer.type === 'tier').length
   const numberOfFrostings = layers.length - numberOfTiers
-  const totalPrice = numberOfTiers*prices.tier + numberOfFrostings*prices.frosting
-  
+  const totalPrice =
+    numberOfTiers * prices.tier + numberOfFrostings * prices.frosting
+
   return totalPrice
 }
 
@@ -16,18 +23,25 @@ const addLayer = (data, layerType) => {
   const flavor = currentLayerType === 'tier' ? data.tierFlavor : data.frostingFlavor
   const lastLayer = data.layers[data.layers.length - 1] || {
     level: -1,
-    type: 'frosting'
+    type: 'frosting',
   }
   const { level, type } = lastLayer
   const currentLayerLevel = currentLayerType === 'tier' ? level + 1 : level
-  const updatedLayers =  [...data.layers, { type: currentLayerType, level: currentLayerLevel, flavor}]
+  const updatedLayers = [
+    ...data.layers,
+    { type: currentLayerType, level: currentLayerLevel, flavor },
+  ]
   const updatedPrice = calculatePrice(updatedLayers)
 
-  if (data.toppings === 'none' && currentLayerType !== type && currentLayerLevel < 3) {
+  if (
+    data.toppings === 'none' &&
+    currentLayerType !== type &&
+    currentLayerLevel < 3
+  ) {
     return {
       ...data,
       layers: updatedLayers,
-      price: updatedPrice
+      price: updatedPrice,
     }
   } else {
     return data
@@ -41,11 +55,11 @@ const removeLastLayer = (data) => {
     ...data,
     layers,
     price: calculatePrice(layers),
-    toppings: 'none'
+    toppings: 'none',
   }
 }
 
-const reducer = (state, action) => { 
+const reducer = (state, action) => {
   const data = state
 
   switch (action.type) {
@@ -57,7 +71,7 @@ const reducer = (state, action) => {
       const newLayerType = action.payload.type
       return addLayer(data, newLayerType)
     case SET_TOPPINGS:
-      return {...data, toppings: action.payload}
+      return { ...data, toppings: action.payload }
     case REMOVE_LAST_LAYER:
       return removeLastLayer(data)
     case RESET:

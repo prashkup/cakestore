@@ -6,15 +6,15 @@ const initialState = {
     {
       type: 'tier',
       flavor: 'butterscotch',
-      level: 0
+      level: 0,
     },
     {
       type: 'frosting',
       flavor: 'chocolate',
-      level: 0
-    }
+      level: 0,
+    },
   ],
-  price: 115
+  price: 115,
 }
 
 export default initialState

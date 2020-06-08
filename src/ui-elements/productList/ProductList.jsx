@@ -5,10 +5,10 @@ import firebase from '../../firebase'
 import './ProductList.css'
 
 const ProductList = () => {
-  const [ products, setProducts ]= useState([])
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
-    async function fetchProducts () {
+    async function fetchProducts() {
       try {
         const result = await firebase.getProducts()
         setProducts(result)
@@ -21,15 +21,15 @@ const ProductList = () => {
   }, [products])
 
   const Products = products.map((val) => {
-    return <Product name={val.name} id={val.id} desc={val.description} img={val.image} />
+    return (
+      <Product name={val.name} id={val.id} desc={val.description} img={val.image} />
+    )
   })
 
   return (
-    <div className='product-list-wrapper'>
+    <div className="product-list-wrapper">
       <h2>Cakes</h2>
-      <div className='product-list'>
-        {Products}
-      </div>
+      <div className="product-list">{Products}</div>
     </div>
   )
 }

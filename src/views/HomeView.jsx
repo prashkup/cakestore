@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Description , ProductCreator, ProductList } from '../ui-elements'
+import { Description, ProductCreator, ProductList } from '../ui-elements'
 
 const HomeView = () => {
   return (

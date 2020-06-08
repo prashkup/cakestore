@@ -1,7 +1,7 @@
 import { ADD_PRODUCT_TO_CART } from './actions'
 
 const initialState = {
-  productsInCart: 0
+  productsInCart: 0,
 }
 
 const reducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
     case ADD_PRODUCT_TO_CART:
       return {
         ...state,
-        productsInCart: state.productsInCart + 1
+        productsInCart: state.productsInCart + 1,
       }
     default:
       return state

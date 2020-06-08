@@ -1,6 +1,13 @@
 import reducer from './reducer'
 import initialState from './initialState'
-import { addLayer, setTierFlavor, setFrostingFlavor, setToppings, removeLastLayer, reset } from './actions'
+import {
+  addLayer,
+  setTierFlavor,
+  setFrostingFlavor,
+  setToppings,
+  removeLastLayer,
+  reset,
+} from './actions'
 
 describe('reducer tests', () => {
   it('should set the tier flavor', () => {
@@ -20,7 +27,7 @@ describe('reducer tests', () => {
     const newState = reducer(state, addLayer('tier'))
     const received = {
       price: newState.price,
-      layers: newState.layers
+      layers: newState.layers,
     }
     const expected = {
       price: 100,
@@ -28,20 +35,24 @@ describe('reducer tests', () => {
         {
           type: 'tier',
           level: 0,
-          flavor: 'chocolate'
-        }
-      ]
+          flavor: 'chocolate',
+        },
+      ],
     }
     expect(received).toStrictEqual(expected)
   })
 
   it('should add a tier when the last layer is not a frosting', () => {
-    const state = { ...initialState, layers: [ { type: 'tier', level: 0, flavor: 'chocolate' } ], 
-    tierFlavor: 'butterscotch', price: 100 }
+    const state = {
+      ...initialState,
+      layers: [{ type: 'tier', level: 0, flavor: 'chocolate' }],
+      tierFlavor: 'butterscotch',
+      price: 100,
+    }
     const newState = reducer(state, addLayer('tier'))
     const received = {
       price: newState.price,
-      layers: newState.layers
+      layers: newState.layers,
     }
     const expected = {
       price: 100,
@@ -49,20 +60,26 @@ describe('reducer tests', () => {
         {
           type: 'tier',
           level: 0,
-          flavor: 'chocolate'
-        }
-      ]
+          flavor: 'chocolate',
+        },
+      ],
     }
     expect(received).toStrictEqual(expected)
   })
 
   it('should not add a frosting if the last layer is not a tier', () => {
-    const state = { ...initialState, layers: [ { type: 'tier', level: 0, flavor: 'chocolate' }, 
-    { type: 'frosting', level: 0, flavor: 'pineapple' } ], frostingFlavor: 'butterscotch' }
+    const state = {
+      ...initialState,
+      layers: [
+        { type: 'tier', level: 0, flavor: 'chocolate' },
+        { type: 'frosting', level: 0, flavor: 'pineapple' },
+      ],
+      frostingFlavor: 'butterscotch',
+    }
     const newState = reducer(state, addLayer('frosting'))
     const received = {
       price: newState.price,
-      layers: newState.layers
+      layers: newState.layers,
     }
     const expected = {
       price: 115,
@@ -70,25 +87,29 @@ describe('reducer tests', () => {
         {
           type: 'tier',
           level: 0,
-          flavor: 'chocolate'
+          flavor: 'chocolate',
         },
         {
           type: 'frosting',
           level: 0,
-          flavor: 'pineapple'
-        }
-      ]
+          flavor: 'pineapple',
+        },
+      ],
     }
     expect(received).toStrictEqual(expected)
   })
 
   it('should not add another layer if toppings have been selected', () => {
-    const state = { ...initialState, layers: [ { type: 'tier', level: 0, flavor: 'pineapple' } ],
-    toppings: 'sprinkles', price: 100 }
+    const state = {
+      ...initialState,
+      layers: [{ type: 'tier', level: 0, flavor: 'pineapple' }],
+      toppings: 'sprinkles',
+      price: 100,
+    }
     const newState = reducer(state, addLayer('tier'))
     const received = {
       price: newState.price,
-      layers: newState.layers
+      layers: newState.layers,
     }
     const expected = {
       price: 100,
@@ -96,103 +117,112 @@ describe('reducer tests', () => {
         {
           type: 'tier',
           level: 0,
-          flavor: 'pineapple'
-        }
-      ]
+          flavor: 'pineapple',
+        },
+      ],
     }
     expect(received).toStrictEqual(expected)
   })
 
   it('should not add another layer if the cake has 3 levels', () => {
-    const state = { ...initialState, layers: [ 
-        { type: 'tier',     level: 0, flavor: 'chocolate'  },
+    const state = {
+      ...initialState,
+      layers: [
+        { type: 'tier', level: 0, flavor: 'chocolate' },
         { type: 'frosting', level: 0, flavor: 'strawberry' },
-        { type: 'tier',     level: 1, flavor: 'chocolate'  }, 
+        { type: 'tier', level: 1, flavor: 'chocolate' },
         { type: 'frosting', level: 1, flavor: 'strawberry' },
-        { type: 'tier',     level: 2, flavor: 'chocolate'  }, 
-        { type: 'frosting', level: 2, flavor: 'strawberry' }
+        { type: 'tier', level: 2, flavor: 'chocolate' },
+        { type: 'frosting', level: 2, flavor: 'strawberry' },
       ],
-      price: 345 }
+      price: 345,
+    }
     const newState = reducer(state, addLayer('tier'))
     const received = {
       price: newState.price,
-      layers: newState.layers
+      layers: newState.layers,
     }
     const expected = {
       price: 345,
       layers: [
-        { type: 'tier',     level: 0, flavor: 'chocolate'  },
-        { type: 'frosting', level: 0, flavor: 'strawberry' }, 
-        { type: 'tier',     level: 1, flavor: 'chocolate'  }, 
-        { type: 'frosting', level: 1, flavor: 'strawberry' }, 
-        { type: 'tier',     level: 2, flavor: 'chocolate'  }, 
-        { type: 'frosting', level: 2, flavor: 'strawberry' }
-      ]
+        { type: 'tier', level: 0, flavor: 'chocolate' },
+        { type: 'frosting', level: 0, flavor: 'strawberry' },
+        { type: 'tier', level: 1, flavor: 'chocolate' },
+        { type: 'frosting', level: 1, flavor: 'strawberry' },
+        { type: 'tier', level: 2, flavor: 'chocolate' },
+        { type: 'frosting', level: 2, flavor: 'strawberry' },
+      ],
     }
     expect(received).toStrictEqual(expected)
   })
 
   it('should set the toppings', () => {
-    const state = { ...initialState, toppings: 'none'}
+    const state = { ...initialState, toppings: 'none' }
     const newState = reducer(state, setToppings('sprinkles'))
     expect(newState.toppings).toStrictEqual('sprinkles')
   })
 
   it('should remove the last layer from the cake if it has any layers', () => {
-    const state = { ...initialState, layers: [ 
-      { type: 'tier',     level: 0, flavor: 'chocolate'  },
-      { type: 'frosting', level: 0, flavor: 'strawberry' },
-      { type: 'tier',     level: 1, flavor: 'chocolate'  }, 
-      { type: 'frosting', level: 1, flavor: 'strawberry' },
-      { type: 'tier',     level: 2, flavor: 'chocolate'  }, 
-      { type: 'frosting', level: 2, flavor: 'strawberry' }
-    ],
-    price: 345 }
+    const state = {
+      ...initialState,
+      layers: [
+        { type: 'tier', level: 0, flavor: 'chocolate' },
+        { type: 'frosting', level: 0, flavor: 'strawberry' },
+        { type: 'tier', level: 1, flavor: 'chocolate' },
+        { type: 'frosting', level: 1, flavor: 'strawberry' },
+        { type: 'tier', level: 2, flavor: 'chocolate' },
+        { type: 'frosting', level: 2, flavor: 'strawberry' },
+      ],
+      price: 345,
+    }
     const newState = reducer(state, removeLastLayer())
     const received = {
       price: newState.price,
-      layers: newState.layers
+      layers: newState.layers,
     }
     const expected = {
       price: 330,
       layers: [
-        { type: 'tier',     level: 0, flavor: 'chocolate'  },
+        { type: 'tier', level: 0, flavor: 'chocolate' },
         { type: 'frosting', level: 0, flavor: 'strawberry' },
-        { type: 'tier',     level: 1, flavor: 'chocolate'  }, 
+        { type: 'tier', level: 1, flavor: 'chocolate' },
         { type: 'frosting', level: 1, flavor: 'strawberry' },
-        { type: 'tier',     level: 2, flavor: 'chocolate'  }
-      ]
+        { type: 'tier', level: 2, flavor: 'chocolate' },
+      ],
     }
     expect(received).toStrictEqual(expected)
   })
 
   it('should remove the toppings and the last layer if toppings have been set', () => {
-    const state = { ...initialState, layers: [ 
-      { type: 'tier',     level: 0, flavor: 'chocolate'  },
-      { type: 'frosting', level: 0, flavor: 'strawberry' },
-      { type: 'tier',     level: 1, flavor: 'chocolate'  }, 
-      { type: 'frosting', level: 1, flavor: 'strawberry' },
-      { type: 'tier',     level: 2, flavor: 'chocolate'  }, 
-      { type: 'frosting', level: 2, flavor: 'strawberry' }
-    ],
-    toppings: 'sprinkles',
-    price: 345 }
+    const state = {
+      ...initialState,
+      layers: [
+        { type: 'tier', level: 0, flavor: 'chocolate' },
+        { type: 'frosting', level: 0, flavor: 'strawberry' },
+        { type: 'tier', level: 1, flavor: 'chocolate' },
+        { type: 'frosting', level: 1, flavor: 'strawberry' },
+        { type: 'tier', level: 2, flavor: 'chocolate' },
+        { type: 'frosting', level: 2, flavor: 'strawberry' },
+      ],
+      toppings: 'sprinkles',
+      price: 345,
+    }
     const newState = reducer(state, removeLastLayer())
     const received = {
       price: newState.price,
       layers: newState.layers,
-      toppings: newState.toppings
+      toppings: newState.toppings,
     }
     const expected = {
       price: 330,
       layers: [
-        { type: 'tier',     level: 0, flavor: 'chocolate'  },
+        { type: 'tier', level: 0, flavor: 'chocolate' },
         { type: 'frosting', level: 0, flavor: 'strawberry' },
-        { type: 'tier',     level: 1, flavor: 'chocolate'  }, 
+        { type: 'tier', level: 1, flavor: 'chocolate' },
         { type: 'frosting', level: 1, flavor: 'strawberry' },
-        { type: 'tier',     level: 2, flavor: 'chocolate'  }
+        { type: 'tier', level: 2, flavor: 'chocolate' },
       ],
-      toppings: 'none'
+      toppings: 'none',
     }
     expect(received).toStrictEqual(expected)
   })
@@ -204,15 +234,18 @@ describe('reducer tests', () => {
   })
 
   it('should reset the cake when it contains layers', () => {
-    const state = { ...initialState, layers: [ 
-      { type: 'tier',     level: 0, flavor: 'chocolate'  },
-      { type: 'frosting', level: 0, flavor: 'strawberry' },
-      { type: 'tier',     level: 1, flavor: 'chocolate'  }, 
-      { type: 'frosting', level: 1, flavor: 'strawberry' },
-      { type: 'tier',     level: 2, flavor: 'chocolate'  }, 
-      { type: 'frosting', level: 2, flavor: 'strawberry' }
-    ],
-    price: 345 }
+    const state = {
+      ...initialState,
+      layers: [
+        { type: 'tier', level: 0, flavor: 'chocolate' },
+        { type: 'frosting', level: 0, flavor: 'strawberry' },
+        { type: 'tier', level: 1, flavor: 'chocolate' },
+        { type: 'frosting', level: 1, flavor: 'strawberry' },
+        { type: 'tier', level: 2, flavor: 'chocolate' },
+        { type: 'frosting', level: 2, flavor: 'strawberry' },
+      ],
+      price: 345,
+    }
     const newState = reducer(state, reset())
     expect(newState).toStrictEqual(initialState)
   })
