@@ -4,7 +4,7 @@ const initialState = {
   productsInCart: 0,
 }
 
-const reducer = (state = initialState, action) => {
+const productAdderReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
       return {
@@ -16,4 +16,4 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-export default reducer
+export default productAdderReducer
