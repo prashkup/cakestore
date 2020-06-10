@@ -1,24 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Product from '../product/Product'
-import firebase from '../../firebase'
 
 import './ProductList.css'
+import { fetchProducts } from './actions'
 
 const ProductList = () => {
-  const [products, setProducts] = useState([])
+  const products = useSelector((state) => state.products.items) || []
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const result = await firebase.getProducts()
-        setProducts(result)
-      } catch (error) {
-        console.error(error)
-      }
-    }
-
-    if (products.length === 0) fetchProducts()
-  }, [products])
+    if (products.length === 0) dispatch(fetchProducts())
+  }, [dispatch, products.length])
 
   const Products = products.map((val) => {
     return (
