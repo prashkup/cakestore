@@ -3,7 +3,7 @@ import './ShoppingCart.css'
 import { useSelector } from 'react-redux'
 
 const ShoppingCart = () => {
-  const quantity = useSelector((state) => state.productsInCart)
+  const quantity = useSelector((state) => state.cart.productsInCart)
 
   return (
     <div className="shopping-cart">
