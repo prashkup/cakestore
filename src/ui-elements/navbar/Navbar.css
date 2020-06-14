@@ -20,3 +20,10 @@
 .nav-link {
   margin-right: 15px;
 }
+
+.shopping-cart {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

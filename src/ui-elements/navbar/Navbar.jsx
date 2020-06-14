@@ -1,11 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from '@reach/router'
+import { useSelector } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
 import './Navbar.css'
-import ShoppingCart from '../shoppingCart/ShoppingCart'
 
 const Navbar = ({ title }) => {
+  const quantity = useSelector((state) => state.cart.productsInCart.length)
+
   return (
     <nav className="site-nav">
       <div className="logo">
@@ -16,7 +20,10 @@ const Navbar = ({ title }) => {
       <ul className="nav-links">
         <li className="nav-link">
           <Link to="/cart">
-            <ShoppingCart />
+            <div className="shopping-cart">
+              <FontAwesomeIcon style={{ marginRight: '10px' }} icon={faCartPlus} />
+              <p>{quantity}</p>
+            </div>
           </Link>
         </li>
         <li className="nav-link">
