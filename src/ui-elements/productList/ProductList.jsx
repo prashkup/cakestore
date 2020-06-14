@@ -16,7 +16,13 @@ const ProductList = () => {
   const Products = products.map((val) => {
     return (
       <Product
-        product={{ name: val.name, desc: val.desc, id: val.id, img: val.image }}
+        product={{
+          name: val.name,
+          desc: val.desc,
+          id: val.id,
+          price: val.price,
+          img: val.image,
+        }}
       />
     )
   })
