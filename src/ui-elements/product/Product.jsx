@@ -1,19 +1,30 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ProductAdder from '../productAdder/ProductAdder'
 
 import './Product.css'
 
-const Product = ({ name, id, desc, img, price }) => {
+const Product = ({ product }) => {
   return (
     <div className="product">
-      <h1>{name}</h1>
-      <h2>{id}</h2>
-      <p>{desc}</p>
-      <p>{price}</p>
-      <img src={img} alt="cake" />
-      <ProductAdder />
+      <h1>{product.name}</h1>
+      <h2>{product.id}</h2>
+      <p>{product.desc}</p>
+      <p>{product.price}</p>
+      <img src={product.img} alt="cake" />
+      <ProductAdder product={product} />
     </div>
   )
+}
+
+Product.propTypes = {
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    desc: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
+  }),
 }
 
 export default Product

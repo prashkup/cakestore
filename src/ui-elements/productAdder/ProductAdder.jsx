@@ -4,12 +4,12 @@ import './ProductAdder.css'
 import { useDispatch } from 'react-redux'
 import { addToCart } from './actions'
 
-const ProductAdder = () => {
+const ProductAdder = ({ product }) => {
   const dispatch = useDispatch()
 
   return (
     <div className="add-to-cart-wrapper">
-      <button onClick={() => dispatch(addToCart(1))}>Add to Cart</button>
+      <button onClick={() => dispatch(addToCart(product))}>Add to Cart</button>
     </div>
   )
 }

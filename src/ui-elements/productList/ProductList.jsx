@@ -15,7 +15,9 @@ const ProductList = () => {
 
   const Products = products.map((val) => {
     return (
-      <Product name={val.name} id={val.id} desc={val.description} img={val.image} />
+      <Product
+        product={{ name: val.name, desc: val.desc, id: val.id, img: val.image }}
+      />
     )
   })
 
