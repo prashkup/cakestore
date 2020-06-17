@@ -1,0 +1,13 @@
+button {
+  cursor: pointer;
+}
+
+.shopping-cart-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
