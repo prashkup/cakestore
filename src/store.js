@@ -1,10 +1,11 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import productAdderReducer from './ui-elements/productAdder/productAdderReducer'
 import productListReducer from './ui-elements/productList/productListReducer'
 import rootSaga from './rootSaga'
 
 const sagaMiddleware = createSagaMiddleware()
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const saveToLocalStorage = (state) => {
   try {
@@ -32,7 +33,7 @@ const configureStore = () => {
   const store = createStore(
     combineReducers({ cart: productAdderReducer, products: productListReducer }),
     persistedState,
-    applyMiddleware(sagaMiddleware)
+    composeEnhancer(applyMiddleware(sagaMiddleware))
   )
   store.subscribe(() => saveToLocalStorage(store.getState()))
   sagaMiddleware.run(rootSaga)
