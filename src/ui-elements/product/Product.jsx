@@ -12,7 +12,7 @@ const Product = ({ product }) => {
       <p>{product.desc}</p>
       <p>{product.price}</p>
       <img src={product.img} alt="cake" />
-      <ProductAdder product={product} />
+      <ProductAdder id={product.id} />
     </div>
   )
 }
