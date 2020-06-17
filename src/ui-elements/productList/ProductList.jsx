@@ -13,9 +13,10 @@ const ProductList = () => {
     if (products.length === 0) dispatch(fetchProducts())
   }, [dispatch, products.length])
 
-  const Products = products.map((val) => {
+  const Products = products.map((val, index) => {
     return (
       <Product
+        key={index}
         product={{
           name: val.name,
           desc: val.desc,
