@@ -8,7 +8,11 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 import './Navbar.css'
 
 const Navbar = ({ title }) => {
-  const quantity = useSelector((state) => state.cart.productsInCart.length)
+  const productsInCart = useSelector((state) => {
+    const totalNum = Object.values(state.cart.items).reduce((a, b) => a + b)
+
+    return totalNum
+  })
 
   return (
     <nav className="site-nav">
@@ -22,7 +26,7 @@ const Navbar = ({ title }) => {
           <Link to="/cart">
             <div className="shopping-cart">
               <FontAwesomeIcon style={{ marginRight: '10px' }} icon={faCartPlus} />
-              <p>{quantity}</p>
+              <p>{productsInCart}</p>
             </div>
           </Link>
         </li>
