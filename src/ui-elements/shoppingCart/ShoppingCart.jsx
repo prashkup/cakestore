@@ -1,17 +1,21 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import ShoppingCartItem from '../shoppingCartItem/ShoppingCartItem'
 
 const ShoppingCart = () => {
-  const products = useSelector((state) => state.cart.productsInCart)
+  const cart = useSelector((state) => state.cart.items)
+  const ids = Object.keys(cart)
   const ProductsList = () =>
-    products.map((el) => (
-      <div>
-        <h1>{el.name}</h1>
-        <p>{el.price}</p>
-        <img src={el.img} alt="cake" />
-      </div>
-    ))
-  return <ProductsList />
+    ids.map((el, index) => <ShoppingCartItem key={index} id={el} />)
+
+  return (
+    <div>
+      <ProductsList />
+      <h3>100</h3>
+      <button>Checkout</button>
+      <button>Continue Shopping</button>
+    </div>
+  )
 }
 
 export default ShoppingCart
