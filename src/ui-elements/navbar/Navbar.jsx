@@ -9,9 +9,13 @@ import './Navbar.css'
 
 const Navbar = ({ title }) => {
   const productsInCart = useSelector((state) => {
-    const totalNum = Object.values(state.cart.items).reduce((a, b) => a + b)
+    const cartItemQuantities = Object.values(state.cart.items)
 
-    return totalNum
+    if (cartItemQuantities.length) {
+      return cartItemQuantities.reduce((a, b) => a + b)
+    } else {
+      return 0
+    }
   })
 
   return (
