@@ -1,19 +1,23 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import ShoppingCartItem from '../shoppingCartItem/ShoppingCartItem'
+import ShoppingCartItem from './shoppingCartItem/ShoppingCartItem'
+import { Link } from '@reach/router'
 
 const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart.items)
   const ids = Object.keys(cart)
-  const ProductsList = () =>
-    ids.map((el, index) => <ShoppingCartItem key={index} id={el} />)
+  let CartProducts = () => <h2>There are no products in the cart.</h2>
+
+  if (ids.length > 0) {
+    CartProducts = () =>
+      ids.map((el, index) => <ShoppingCartItem key={index} id={el} />)
+  }
 
   return (
     <div>
-      <ProductsList />
-      <h3>100</h3>
-      <button>Checkout</button>
-      <button>Continue Shopping</button>
+      <CartProducts />
+      <Link to="/checkout">Checkout</Link>
+      <Link to="/">Continue Shopping</Link>
     </div>
   )
 }
