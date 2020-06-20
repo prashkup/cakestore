@@ -1,10 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ProductAdder from '../productAdder/ProductAdder'
+import useAddToCart from '../shoppingCart/useAddToCart'
 
 import './Product.css'
 
 const Product = ({ product }) => {
+  const [AddToCartButton] = useAddToCart({
+    label: 'Add to Cart',
+    productId: product.id,
+    quantity: 1,
+  })
+
   return (
     <div className="product">
       <h1>{product.name}</h1>
@@ -12,7 +18,7 @@ const Product = ({ product }) => {
       <p>{product.desc}</p>
       <p>{product.price}</p>
       <img src={product.img} alt="cake" />
-      <ProductAdder id={product.id} />
+      <AddToCartButton />
     </div>
   )
 }
