@@ -8,6 +8,10 @@ button {
   align-items: center;
   height: 60px;
   width: 80%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px auto;
+  border: 1px solid var(--brown-primary);
+}
+
+.cart-item-controls button {
+  display: block;
 }
