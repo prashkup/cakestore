@@ -3,7 +3,6 @@ import './ProductCreator.css'
 import cakePainter from '../../cakePainter'
 import reducer from './reducer'
 import initialState from './initialState'
-import ProductAdder from '../productAdder/ProductAdder'
 import {
   addLayer,
   removeLastLayer,
@@ -120,7 +119,13 @@ const ProductCreator = () => {
         >
           Reset
         </button>
-        <ProductAdder />
+        <button
+          onClick={() => {
+            console.log('coming soon')
+          }}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   )
