@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import productAdderReducer from './ui-elements/productAdder/productAdderReducer'
+import shoppingCartReducer from './ui-elements/shoppingCart/shoppingCartReducer'
 import productListReducer from './ui-elements/productList/productListReducer'
 import rootSaga from './rootSaga'
 
@@ -31,7 +31,7 @@ const persistedState = loadFromLocalStorage()
 
 const configureStore = () => {
   const store = createStore(
-    combineReducers({ cart: productAdderReducer, products: productListReducer }),
+    combineReducers({ cart: shoppingCartReducer, products: productListReducer }),
     persistedState,
     composeEnhancer(applyMiddleware(sagaMiddleware))
   )
