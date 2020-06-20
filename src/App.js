@@ -8,6 +8,7 @@ import { Navbar, Footer } from './ui-elements'
 import HomeView from './views/HomeView'
 import CartView from './views/CartView'
 import AboutView from './views/AboutView'
+import CheckoutView from './views/CheckoutView'
 
 const history = createBrowserHistory()
 
@@ -21,6 +22,7 @@ function App({ store }) {
             <HomeView path="/" />
             <CartView path="/cart" />
             <AboutView path="/about" />
+            <CheckoutView path="/checkout" />
           </Router>
         </main>
         <Footer />
